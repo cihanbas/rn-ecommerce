@@ -5,13 +5,14 @@ import SearchScreen from "../screens/SearchScreen";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import CartScreen from "../screens/CartScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import { colors } from "../utils/constants";
 const Tabs = createBottomTabNavigator()
 const BottomNavigation = () => {
     return <NavigationContainer>
         <Tabs.Navigator screenOptions={{
             headerShown: false,
-            tabBarInactiveTintColor: '#ccc',
-            tabBarActiveTintColor: '#007',
+            tabBarInactiveTintColor: colors.inactive,
+            tabBarActiveTintColor: colors.primary,
             // tabBarShowLabel: false
         }} >
             <Tabs.Screen name="Home" component={HomeScreen} options={{
