@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native"
+import { ItemUrun, Urunler } from "../types/products"
 
 const width = Dimensions.get('screen').width
 const padding = 12
@@ -12,6 +13,12 @@ const colors = {
     inactive: '#bbb'
 }
 
+const sepetListesi: Urunler = []
+
+
+
+
 export {
-    width, padding, item_width, colors
+    width, padding, item_width, colors,
+    sepetListesi
 }

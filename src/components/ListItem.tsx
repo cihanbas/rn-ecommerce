@@ -1,9 +1,21 @@
 import { Image, StyleSheet, Text, View } from "react-native"
-import Button from "./Button"
-import { colors, item_width, padding } from "../utils/constants"
 import { ItemUrun } from "../types/products"
+import { colors, item_width, padding, sepetListesi } from "../utils/constants"
+import Button from "./Button"
+import { cartStore } from "../store/sepetStore"
 
 const RenderItem = ({ urun }: ItemUrun) => {
+    const urunEkle = cartStore(s => s.addProduct)
+    const urunler = cartStore(s => s.productList)
+    const sepeteEkle = () => {
+        const isExist = urunler.find(u => u.id == urun.id)
+        if (isExist) {
+            alert('urun zaten sepette var')
+        } else {
+            urunEkle(urun)
+        }
+
+    }
     return <View style={styles.item_container}  >
         <Image source={{ uri: urun.image }} style={styles.item_image} />
         <Text numberOfLines={2} style={styles.item_title}>
@@ -17,7 +29,7 @@ const RenderItem = ({ urun }: ItemUrun) => {
                 {urun.rating.count} {urun.rating.rate}
             </Text>
         </View>
-        <Button text='Sepete Ekle' />
+        <Button text='Sepete Ekle' onClick={() => sepeteEkle()} />
     </View>
 }
 export default RenderItem

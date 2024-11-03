@@ -6,8 +6,10 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import CartScreen from "../screens/CartScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import { colors } from "../utils/constants";
+import { cartStore } from "../store/sepetStore";
 const Tabs = createBottomTabNavigator()
 const BottomNavigation = () => {
+    const urunListesi = cartStore(s => s.productList)
     return <NavigationContainer>
         <Tabs.Navigator screenOptions={{
             headerShown: false,
@@ -32,11 +34,12 @@ const BottomNavigation = () => {
                     tabBarIcon: ({ color, focused, size }) => {
                         return <AntDesign name="shoppingcart" size={24} color={color} />
                     },
+                    tabBarBadge: urunListesi.length
 
                 }} />
             <Tabs.Screen name="Profile" component={ProfileScreen}
                 options={{
-                    tabBarIcon: ({ color, focused, size }) => {
+                    tabBarIcon: ({ color, }) => {
                         return <AntDesign name="user" size={24} color={color} />
                     },
                 }} />

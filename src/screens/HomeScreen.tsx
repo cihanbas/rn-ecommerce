@@ -3,9 +3,6 @@ import { FlatList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import RenderItem from '../components/ListItem'
 import { Urunler } from '../types/products'
-
-
-
 const HomeScreen = () => {
     const [urunler, setUrunler] = useState<Urunler | null>(null)
     useEffect(() => {
