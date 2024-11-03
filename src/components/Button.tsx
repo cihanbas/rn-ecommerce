@@ -2,9 +2,12 @@ import { Pressable, StyleSheet, Text } from "react-native"
 import { colors, padding } from "../utils/constants"
 interface IButton {
     text: string
+    onClick: () => void
 }
-const Button = ({ text }: IButton) => {
-    return <Pressable style={styles.add_cart}>
+const Button = ({ text, onClick }: IButton) => {
+
+    return <Pressable style={styles.add_cart}
+        onPress={() => onClick()}>
         <Text style={styles.add_cart_text}>
             {text}
         </Text>
