@@ -9,7 +9,7 @@ import { colors } from "../utils/constants";
 import { cartStore } from "../store/sepetStore";
 const Tabs = createBottomTabNavigator()
 const BottomNavigation = () => {
-    const urunListesi = cartStore(s => s.productList)
+    const productList = cartStore(s => s.productList)
     return <NavigationContainer>
         <Tabs.Navigator screenOptions={{
             headerShown: false,
@@ -34,7 +34,7 @@ const BottomNavigation = () => {
                     tabBarIcon: ({ color, focused, size }) => {
                         return <AntDesign name="shoppingcart" size={24} color={color} />
                     },
-                    tabBarBadge: urunListesi.length
+                    tabBarBadge: productList.length
 
                 }} />
             <Tabs.Screen name="Profile" component={ProfileScreen}

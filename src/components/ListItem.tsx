@@ -5,14 +5,13 @@ import Button from "./Button"
 import { cartStore } from "../store/sepetStore"
 
 const RenderItem = ({ urun }: ItemUrun) => {
-    const urunEkle = cartStore(s => s.addProduct)
-    const urunler = cartStore(s => s.productList)
+    const { addProduct, productList } = cartStore(s => s)
     const sepeteEkle = () => {
-        const isExist = urunler.find(u => u.id == urun.id)
+        const isExist = productList.find(u => u.id == urun.id)
         if (isExist) {
             alert('urun zaten sepette var')
         } else {
-            urunEkle(urun)
+            addProduct(urun)
         }
 
     }

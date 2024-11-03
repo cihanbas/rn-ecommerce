@@ -11,7 +11,17 @@ const cartStore = create<Cart>(set => ({
     addProduct: (urun) => set((state) => ({
         productList: [...state.productList, urun]
     })),
-
 }))
 
 export { cartStore }
+
+
+// const ogrenci = {
+//     isim: "Mehmet",
+//     soyIsim: "Ahmet",
+//     adres: 'ankara'
+// }
+// // const isim = ogrenci.isim
+// // const soyIsim = ogrenci.soyIsim
+
+// const { isim, soyIsim, adres } = ogrenci
