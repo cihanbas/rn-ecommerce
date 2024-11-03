@@ -1,10 +1,12 @@
-import { Image, StyleSheet, Text, View } from "react-native"
-import { ItemUrun } from "../types/products"
-import { colors, item_width, padding, sepetListesi } from "../utils/constants"
-import Button from "./Button"
+import { Image, Pressable, StyleSheet, Text, View } from "react-native"
 import { cartStore } from "../store/sepetStore"
-
+import { ItemUrun } from "../types/products"
+import { colors, item_width, padding } from "../utils/constants"
+import Button from "./Button"
+import { useNavigation } from "@react-navigation/native"
 const RenderItem = ({ urun }: ItemUrun) => {
+
+    const navigation = useNavigation()
     const { addProduct, productList } = cartStore(s => s)
     const sepeteEkle = () => {
         const isExist = productList.find(u => u.id == urun.id)
@@ -13,9 +15,11 @@ const RenderItem = ({ urun }: ItemUrun) => {
         } else {
             addProduct(urun)
         }
-
     }
-    return <View style={styles.item_container}  >
+    const navigateToDetail = () => {
+        navigation.navigate('ProductDetail', { urun })
+    }
+    return <Pressable style={styles.item_container} onPress={() => navigateToDetail()} >
         <Image source={{ uri: urun.image }} style={styles.item_image} />
         <Text numberOfLines={2} style={styles.item_title}>
             {urun.title}
@@ -29,7 +33,7 @@ const RenderItem = ({ urun }: ItemUrun) => {
             </Text>
         </View>
         <Button text='Sepete Ekle' onClick={() => sepeteEkle()} />
-    </View>
+    </Pressable>
 }
 export default RenderItem
 
